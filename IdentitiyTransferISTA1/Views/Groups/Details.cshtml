@@ -1,0 +1,62 @@
+﻿@model IdentitiyTransferISTA1.Models.Groups
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+
+    <h4>Groups</h4>
+    <p>
+        @Html.ActionLink("Back to List", "Index") |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id })
+        <a href="@Html.DisplayFor(model => model.urlSched)" class="pull-right" target="_blank">Edit in Google sheet ?</a>
+    </p>
+    <hr />
+   
+    <dl class="dl-horizontal col-lg-4">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Cycles.Type_Cycle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycles.Type_Cycle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialisations.nomSpecialisation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialisations.nomSpecialisation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numGroup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numGroup)
+        </dd>
+        
+        @*<dt>
+            @Html.DisplayNameFor(model => model.urlSched)
+        </dt>*@
+
+    </dl>
+</div>
+<div class="col-lg-8">
+    <dl>
+        <dd>
+            <iframe style="margin:auto ;height: 75vh ;width:100%;max-width:800px;" class="thumbnail pull-left" src="@Html.DisplayFor(model => model.urlSched)"></iframe>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id })
+</p>

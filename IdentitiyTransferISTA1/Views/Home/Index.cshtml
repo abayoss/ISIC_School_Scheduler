@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+        @if (User.IsInRole("Admins"))
+        {
+            <script>
+                document.getElementById('btnGroups').click()
+            </script>
+        }
+
+<div  id="Jombo">
+    <h2>ISTA en Bref</h2>
+    <hr />
+    <p class="lead">
+        Institut Spécialisé de Technologie Appliquée Maroc: ( ISTA Maroc ) , est un établissement public
+        et un opérateur national de formation professionnelle créé en 1974 doté de la personnalité morale et de l’autonomie financière,
+        et ayant pour objectif de former les jeunes afin qu’ils soient forts et compétents à cet ère de la mondialisation
+        où la croissance va de pair avec la compétitivité des entreprises.
+    </p>
+        @if (!Request.IsAuthenticated)
+    {
+        <p style="font-size:30px;">@Html.ActionLink("S'inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn-lg btn-default " })</p>
+    }
+ </div>
+
+<div class="row">
+    <h1>Les secteurs de formation</h1>
+    <div class="col-md-4">
+        <h2>Gestion et Commerce</h2>
+        <p>
+            Les nouvelles tendances de l’économie mondiale montrent que les métiers du Tertiaire prennent une place 
+            de plus en plus importante dans le système de production en général en vue d’une plus grande productivité.
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Lire La Suite &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Audiovisuelle</h2>
+        <p>Tout processus de développement repose essentiellement sur les ressources humaines. Ceci est d’autant plus vrai dans le secteur audiovisuel. </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Lire La Suite &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Génie Électrique</h2>
+        <p>La part du secteur électrique et électronique dans la production industrielle au Maroc s’est accrue de 3,2% à 4,2% entre 1998 et 2001.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Lire La Suite &raquo;</a></p>
+    </div>
+</div>
+<style>
+    body {
+        background-image: url('../../Content/Images/Web 1920 – 9.png');
+        color: white;
+    }
+</style>

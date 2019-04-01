@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Contact";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <div class="jumbotron">
+        @if (Request.IsAuthenticated)
+        {
+            <h2>
+            @Html.ActionLink("Votre Emploi du temps " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </h2>
+        
+            <iframe class="thumbnail" style="margin:auto ;height: 75vh ;width:100%;max-width:800px;" src="@ViewBag.Message"></iframe>
+        }
+    </div>
+}
+<h2>@ViewBag.Title.</h2>
+@if (User.IsInRole("Admins"))
+{
+    <h5>@ViewBag.Message</h5>
+}
+<address>
+    Intersection de la Route B.O. n° 50 et la Route Nationale 11,<br />
+    BP : 40207  / 20 270 Sidi Maârouf - Casablanca.<br /><br />
+    <abbr title="Telephone">Tel :</abbr>
+    + 212 (05) 22 63 44 44<br /><br />
+    <b>Type d'établissement :</b> Ecoles Spécialisées
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>
+<style>
+    body {
+        background-image: url('../../Content/Images/About.png');
+        color: white;
+    }
+</style>

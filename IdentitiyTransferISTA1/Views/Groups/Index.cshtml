@@ -1,0 +1,102 @@
+﻿@model IEnumerable<IdentitiyTransferISTA1.Models.Groups>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Les Groups :</h2>
+
+<p>
+    @*@Html.ActionLink("Ajouter un Group", "Create" ,null, new { @class = "btn btn-primary pull-right " })*@ 
+    <a href="@Url.Action("Create")" class="btn btn-primary pull-right ">
+        Ajouter un Group .
+        <span class="glyphicon glyphicon-plus-sign pull-right" aria-hidden="true"></span>
+    </a><br />
+
+</p>
+@using (Html.BeginForm())
+{
+        <div class="col-md-12" id="left">
+            <div class="col-md-3" id="left">
+                @Html.DropDownList("idCycle", null, htmlAttributes: new { @Id = "Cycledownlist", @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownList("idSpesialisation", null, htmlAttributes: new { @Id = "Specdownlist", @class = "form-control pull-right" })<br />
+            </div>
+        </div>
+    <br />
+}<br />
+<table class="table table-hover table-striped" id="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cycles.Type_Cycle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specialisations.nomSpecialisation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numGroup)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.urlSched)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cycles.Type_Cycle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specialisations.nomSpecialisation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numGroup)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.urlSched)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }, new { @class = "btn btn-default" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+@section Scripts{
+    <script>
+        $("#Specdownlist").on("change", function (e) {
+            var selected = $(this).children("option:selected").text();
+
+            var SPSelector = "#Cycledownlist";
+            var $SP = $(SPSelector);
+
+            var selectedSP = $SP.children("option:selected").text();
+            var tableSelector = "#table"; // <-change this if you put a class or id on your table
+            var $table = $(tableSelector);
+            $table.find("tr").hide().filter(function ()
+            {
+                return $.trim($(this).find("td:nth-child(2)").text()) == selected && $.trim($(this).find("td:nth-child(1)").text()) == selectedSP
+                || $.trim($(this).find("th:nth-child(2)").text()) == "Spécialité";
+            }).show();
+        });
+        $("#Cycledownlist").on("change", function (e) {
+            var selected = $(this).children("option:selected").text();
+
+            var SPSelector = "#Specdownlist";
+            var $SP = $(SPSelector);
+
+            var selectedSP = $SP.children("option:selected").text();
+            var tableSelector = "#table"; // <-change this if you put a class or id on your table
+            var $table = $(tableSelector);
+            $table.find("tr").hide().filter(function () {
+                return $.trim($(this).find("td:nth-child(1)").text()) == selected && $.trim($(this).find("td:nth-child(2)").text()) == selectedSP
+                || $.trim($(this).find("th:nth-child(2)").text()) == "Spécialité";
+            }).show();
+        });
+    </script>
+}

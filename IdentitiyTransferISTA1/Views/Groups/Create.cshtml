@@ -1,0 +1,68 @@
+﻿@model IdentitiyTransferISTA1.Models.Groups
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Groups</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.idCycle, "Cycle d'etude", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idCycle", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idCycle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idSpesialisation, "Spécialité", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idSpesialisation", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idSpesialisation, "", new { @class = "text-danger" })<br />
+                @Html.ActionLink(" Ajouter Une Nouvelle Spécialité", "Create", "Specialisations")
+            </div>
+        </div>
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.numGroup, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numGroup, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numGroup, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.urlSched, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.urlSched, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.urlSched, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
